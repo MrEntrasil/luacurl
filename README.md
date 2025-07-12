@@ -1,10 +1,10 @@
 # luacurl
 ## Dependencies
-> curl-dev 8.0.1> (recommended)
-> lua-dev 5.4
+> curl-dev 8.0.1> (recommended)<br>
+> lua-dev 5.4<br>
 ## Usage
 ```lua
-luacurl_request(url: string, method: string|nil, body: string|nil) -> res: string|nil, err: string|nil
+luacurl_request(url: string, method: string|nil, body: string|nil, headers: table|nil) -> res: string|nil, err: string|nil
 ```
 ## Example
 ```lua

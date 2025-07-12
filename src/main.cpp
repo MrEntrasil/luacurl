@@ -32,7 +32,21 @@ int luacurl_request(lua_State* L) {
 		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, body);
 	}
 
+	struct curl_slist* headers = nullptr;
+	if (lua_istable(L, 4)) {
+		lua_pushnil(L);
+		while (lua_next(L, 4) != 0) {
+			const char* h = lua_tostring(L, -1);
+			headers = curl_slist_append(headers, h);
+			lua_pop(L, 1);
+		}
+		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+	}
+
 	CURLcode res_code = curl_easy_perform(curl);
+	if (headers) {
+		curl_slist_free_all(headers);
+	}
 	curl_easy_cleanup(curl);
 
 	if (res_code != CURLE_OK) {
