@@ -1,17 +1,17 @@
 # lua_curl 🛜
 
-![Build](https://img.shields.io/github/actions/workflow/status/MrEntrasil/luacurl/ci.yml?branch=main)
+![Build](https://img.shields.io/github/actions/workflow/status/MrEntrasil/luacurl/cmake-single-platform.yml?branch=main)
 ![License](https://img.shields.io/github/license/MrEntrasil/luacurl)
 
 ### ⚠️ **under in development!**
-**lua_curl** is a minimalist API that implements the curl package for lua
-Docs are avaible in /docs directory
+**lua_curl** is a minimalist API that implements the curl package for lua<br>
+Docs are avaible in /docs directory<br>
 
 ## Summary
-- [Build Instructions](#Build Instructions)
+- [BuildInstructions](#BuildInstructions)
 - [Usage](#Usage)
 
-## Build Instructions
+## BuildInstructions
 
 Building the source & generating a binary file(so, dll or dylib):
 ```bash
