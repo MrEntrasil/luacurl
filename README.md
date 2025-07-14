@@ -1,20 +1,38 @@
-# luacurl
-## Dependencies
-> curl-dev 8.0.1> (recommended)<br>
-> lua-dev 5.4<br>
-## Usage
-```lua
-luacurl_request(url: string, method: string|nil, body: string|nil, headers: table|nil) -> res: string|nil, err: string|nil
-```
-## Example
-```lua
-require("luacurl")
-local res, err = luacurl_request("http://example.com")
+# lua_curl 🛜
 
-if res then
-	print(res)
-else
-	print("Error:")
-	print(err)
-end
+![Build](https://img.shields.io/github/actions/workflow/status/MrEntrasil/luacurl/ci.yml?branch=main)
+![License](https://img.shields.io/github/license/MrEntrasil/luacurl)
+
+### ⚠️ **under in development!**
+**lua_curl** is a minimalist API that implements the curl package for lua
+Docs are avaible in /docs directory
+
+## Summary
+- [Build Instructions](#Build Instructions)
+- [Usage](#Usage)
+
+## Build Instructions
+
+Building the source & generating a binary file(so, dll or dylib):
+```bash
+cmake . -B build
+cmake --build build
 ```
+You can also specify the lua/libcurl path
+```bash
+cmake . -B build -DLUA_LIBRARIES=/path/to/lua_lib -DLUA_INCLUDE_DIR=/path/to/lua_include
+```
+```bash
+cmake . -B build -DCURL_LIBRARIES=/path/to/curl_lib -DCURL_INCLUDE_DIR=/path/to/curl_include
+```
+
+and **DONE!** your binary file will be in /build directory
+
+## Usage
+
+luacurl.* can be **require** by:
+```lua
+require("luacurl") -- assuming you put the file in the root directory
+```
+
+luacurl functions **always** begin with `luacurl_*`

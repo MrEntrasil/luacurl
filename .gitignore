@@ -1,4 +1,5 @@
-luacurl.so
+*.so
 /.vscode
 /.vs
-
+/build/*
+Makefile

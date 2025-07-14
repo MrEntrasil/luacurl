@@ -83,6 +83,7 @@ int luacurl_downloadfile(lua_State* L) {
 	curl_easy_cleanup(curl);
 
 	outfile.close();
+    lua_pushboolean(L, 1);
 	return 1;
 }
 

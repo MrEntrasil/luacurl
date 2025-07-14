@@ -6,4 +6,4 @@ print(luacurl_request(
 ))
 --]]
 
-luacurl_downloadfile("https://raw.githubusercontent.com/MrEntrasil/luacurl/refs/heads/main/src/main.cpp", "test");
+print(luacurl_downloadfile("https://raw.githubusercontent.com/MrEntrasil/luacurl/refs/heads/main/src/main.cpp", "test"))
