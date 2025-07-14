@@ -8,6 +8,7 @@ extern "C" {
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 size_t write_cb(void* contents, size_t size, size_t nmemb, void* userp) {
 	((std::ostringstream*)userp)->write((char*)contents, size*nmemb);
