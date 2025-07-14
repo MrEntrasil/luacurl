@@ -1,7 +1,7 @@
 # lua_curl 🛜
 
 ![Build](https://img.shields.io/github/actions/workflow/status/MrEntrasil/luacurl/cmake-single-platform.yml?branch=main)
-![License](https://img.shields.io/github/license/MrEntrasil/luacurl)
+![License](https://img.shields.io/github/license/MrEntrasil/luacurl/blob/main/LICENSE)
 
 ### ⚠️ **under in development!**
 **lua_curl** is a minimalist API that implements the curl package for lua<br>
