@@ -11,8 +11,15 @@ extern "C" {
 #include <cstring>
 
 size_t write_cb(void* contents, size_t size, size_t nmemb, void* userp) {
-	((std::ostringstream*)userp)->write((char*)contents, size*nmemb);
+	std::ostringstream* out = static_cast<std::ostringstream*>(userp);
+	out->write((char*)contents, size * nmemb);
 	return size*nmemb;
+}
+
+size_t write_file_cb(void* contents, size_t size, size_t nmemb, void* userp) {
+	std::ofstream* out = static_cast<std::ofstream*>(userp);
+	out->write((char*)contents, size * nmemb);
+	return size * nmemb;
 }
 
 int luacurl_request(lua_State* L) {
@@ -20,7 +27,7 @@ int luacurl_request(lua_State* L) {
 	const char* method = luaL_optstring(L, 2, "GET");
 	const char* body = luaL_optstring(L, 3, "");
 	std::ostringstream res;
-	struct curl_slist* headers;
+	struct curl_slist* headers = NULL;
 	CURLcode res_code;
 	CURL* curl = curl_easy_init();
 
@@ -78,13 +85,19 @@ int luacurl_downloadfile(lua_State* L) {
 	}
 
 	curl_easy_setopt(curl,CURLOPT_URL,url);
-	curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,&write_cb);
+	curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,&write_file_cb);
 	curl_easy_setopt(curl,CURLOPT_WRITEDATA,&outfile);
 	res = curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
-
 	outfile.close();
-    lua_pushboolean(L, 1);
+
+	if (res != CURLE_OK) {
+		lua_pushnil(L);
+		lua_pushstring(L, curl_easy_strerror(res));
+		return 0;
+	}
+
+  lua_pushboolean(L, 1);
 	return 1;
 }
 
